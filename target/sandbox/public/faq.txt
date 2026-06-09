@@ -1,0 +1,2 @@
+These public files are safe for the support agent to read.
+FAQ: refunds within 30 days, business hours 9-6.

@@ -1,0 +1,10 @@
+# core harness — always needed (this is what CI / `make test` installs)
+httpx>=0.27
+pytest>=8.0
+
+# --- optional, install only for the extras that need them ---
+# indirect-injection payload formats (attacks/indirect/make_payloads.py)
+#   pip install reportlab python-docx
+# garak REST scan (attacks/garak/)        ->  pip install garak
+# PyRIT multi-turn (attacks/pyrit/)        ->  pip install pyrit
+# promptfoo (attacks/promptfoo/)           ->  npx promptfoo@latest  (no pip)
