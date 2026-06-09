@@ -1,0 +1,18 @@
+name: lab-attacks
+on: [push, pull_request]
+jobs:
+  redteam:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r target/requirements.txt -r attacks/requirements.txt
+      - name: deterministic attack assertions
+        run: pytest attacks/test_attacks.py -q
+      - name: harness — insecure target is vulnerable, secure is not
+        run: |
+          LAB_MODE=insecure python attacks/harness.py --in-process --out results/insecure || true
+          LAB_MODE=secure   python attacks/harness.py --in-process --out results/secure
+          echo "insecure:"; jq -r '.succeeded' results/insecure/report.json
+          echo "secure:";   jq -r '.succeeded' results/secure/report.json
