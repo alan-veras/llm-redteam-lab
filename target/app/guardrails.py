@@ -4,7 +4,7 @@ The lab runs in one of two modes (env ``LAB_MODE``):
 
 - ``insecure`` (default): no guardrails. Every attack in ``attacks/`` lands.
 - ``secure``: a *minimal, honest* set of defensive controls is applied. These
-  are intentionally simple (heuristic, not a product) — enough to flip the
+  are intentionally simple (heuristic, not a product), enough to flip the
   outcome of most attacks so the companion eval suite can demonstrate a
   regression gate (insecure FAILS, secure PASSES).
 

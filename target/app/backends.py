@@ -5,8 +5,8 @@ Two backends, same interface:
 - ``MockBackend`` (default): a *deterministic simulator* of a vulnerable LLM.
   It is NOT a real model. It models the one property that actually causes
   prompt injection: **no privilege separation between instructions and data.**
-  Everything it is handed — system prompt, retrieved RAG documents, the user
-  turn — is treated as equally authoritative. So an imperative buried in a
+  Everything it is handed, system prompt, retrieved RAG documents, the user
+  turn, is treated as equally authoritative. So an imperative buried in a
   retrieved document is obeyed exactly like the system prompt. This makes the
   lab run anywhere (CI included) and makes the attacks reproducible.
 
@@ -47,7 +47,7 @@ _REVEAL_PATTERNS = [
     r"translate.*(instruction|prompt|the above)",
 ]
 
-# "Emit exactly X" style imperatives — used by indirect-injection payloads.
+# "Emit exactly X" style imperatives, used by indirect-injection payloads.
 _EMIT_PATTERNS = [
     r"(respond|reply|answer|output|say|print|emit|return)[^.\n]*?(only )?with[:\s]+(?P<val>[A-Z0-9\-]{6,})",
     r"(respond|reply|answer|output|say|print|emit)[:\s]+(?P<val>[A-Z0-9\-]{6,})",
@@ -77,7 +77,7 @@ class MockBackend:
         # The model flattens everything into one authority level. This is the
         # whole vulnerability: untrusted data is treated as instructions. We
         # only scan the *untrusted* surface (retrieved context + user turn) for
-        # imperatives — the system prompt is the thing being protected, not a
+        # imperatives, the system prompt is the thing being protected, not a
         # trigger.
         untrusted = "\n".join(x for x in (context, user) if x)
 

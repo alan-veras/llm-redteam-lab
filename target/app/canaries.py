@@ -3,7 +3,7 @@
 A *canary* is a unique, otherwise-meaningless string we plant inside a trust
 boundary (the system prompt, a private file, a private RAG document). If a
 canary ever shows up in a place an attacker can read, that is *proof* that the
-boundary was crossed — without us having to exfiltrate anything real.
+boundary was crossed, without us having to exfiltrate anything real.
 
 The whole lab is built around canaries on purpose: a finding is "the canary
 leaked", never "I stole real data". That keeps every demo safe to publish.

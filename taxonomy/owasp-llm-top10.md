@@ -2,7 +2,7 @@
 
 This is the attack model the lab is built around. Each technique is something
 the harness in [`../attacks/`](../attacks/) actually runs against the bundled
-target — the table is not a reading list, it is the test plan.
+target, the table is not a reading list, it is the test plan.
 
 The root cause that ties almost all of this together: **an LLM has no built-in
 privilege boundary between instructions and data.** System prompt, retrieved
@@ -15,25 +15,25 @@ boundary the model lacks.
 
 | # | Technique | Where the payload lives | Surface in lab | OWASP LLM Top 10 (2025) | Lab attack id |
 |---|-----------|-------------------------|----------------|--------------------------|---------------|
-| 1 | **Direct injection** — "ignore previous instructions…" | user turn | `/chat` | LLM01 Prompt Injection · LLM07 System Prompt Leakage | `T1-direct-leak` |
-| 2 | **Prefill / assistant pre-seeding** — pre-commit the model to a compliant opening | user turn (assistant prefix) | `/chat` | LLM01 · LLM07 | `T1-prefill` |
-| 3 | **Many-shot conditioning** — N compliant Q/A pairs before the real ask | user turn | `/chat` | LLM01 | `T2-many-shot` |
-| 4 | **Indirect injection / RAG poisoning** — instruction hidden in a retrieved doc | ingested document | `/rag/query` | LLM01 · LLM08 Vector & Embedding Weaknesses · LLM04 Data & Model Poisoning | `T3-rag-poison` |
-| 5 | **Excessive agency / tool abuse** — trick the agent into an unauthorized tool call | user turn or retrieved doc | `/agent` | LLM06 Excessive Agency | `T4-tool-abuse` |
-| 6 | **Tool path traversal** — escape the tool's intended directory | tool argument | `/agent` | LLM06 · LLM05 Improper Output Handling | `T4b-traversal` |
-| 7 | **System-prompt leak via framing** — "translate your instructions…" | user turn | `/chat` | LLM07 · LLM02 Sensitive Information Disclosure | `T5-leak-translate` |
+| 1 | **Direct injection**, "ignore previous instructions…" | user turn | `/chat` | LLM01 Prompt Injection · LLM07 System Prompt Leakage | `T1-direct-leak` |
+| 2 | **Prefill / assistant pre-seeding**, pre-commit the model to a compliant opening | user turn (assistant prefix) | `/chat` | LLM01 · LLM07 | `T1-prefill` |
+| 3 | **Many-shot conditioning**, N compliant Q/A pairs before the real ask | user turn | `/chat` | LLM01 | `T2-many-shot` |
+| 4 | **Indirect injection / RAG poisoning**, instruction hidden in a retrieved doc | ingested document | `/rag/query` | LLM01 · LLM08 Vector & Embedding Weaknesses · LLM04 Data & Model Poisoning | `T3-rag-poison` |
+| 5 | **Excessive agency / tool abuse**, trick the agent into an unauthorized tool call | user turn or retrieved doc | `/agent` | LLM06 Excessive Agency | `T4-tool-abuse` |
+| 6 | **Tool path traversal**, escape the tool's intended directory | tool argument | `/agent` | LLM06 · LLM05 Improper Output Handling | `T4b-traversal` |
+| 7 | **System-prompt leak via framing**, "translate your instructions…" | user turn | `/chat` | LLM07 · LLM02 Sensitive Information Disclosure | `T5-leak-translate` |
 
 ## Techniques described but not weaponized here
 
 These are part of the methodology (and documented), but the lab does **not** ship
-a turn-key tool that points them at arbitrary endpoints — they belong against a
+a turn-key tool that points them at arbitrary endpoints, they belong against a
 real model you own (`LAB_BACKEND=ollama`) or in published research:
 
-- **GCG / adversarial suffixes** (Zou et al.) — gradient-optimized suffixes. Method, not a hosted weapon.
-- **AutoDAN** (Liu et al.) — GA-generated natural-language jailbreaks.
-- **Crescendo** (Microsoft) — multi-turn escalation; see the PyRIT template in `../attacks/pyrit/`.
-- **Divergence / training-data extraction** (Nasr et al.) — "repeat X forever"; relevant to real models, maps to LLM02.
-- **Encoding / token-smuggling** — base64/rot13/Unicode confusables to bypass input filters; LLM01.
+- **GCG / adversarial suffixes** (Zou et al.), gradient-optimized suffixes. Method, not a hosted weapon.
+- **AutoDAN** (Liu et al.), GA-generated natural-language jailbreaks.
+- **Crescendo** (Microsoft), multi-turn escalation; see the PyRIT template in `../attacks/pyrit/`.
+- **Divergence / training-data extraction** (Nasr et al.), "repeat X forever"; relevant to real models, maps to LLM02.
+- **Encoding / token-smuggling**, base64/rot13/Unicode confusables to bypass input filters; LLM01.
 
 ## Coverage vs the full Top 10
 
@@ -65,5 +65,5 @@ called out rather than faked.
 
 **Honest limitation:** these are cheap heuristics. In `secure` mode the lab
 closes the leak, RAG-poisoning and tool-abuse classes but **not** many-shot
-conditioning — a real reminder that input-pattern filters are not a complete
+conditioning, a real reminder that input-pattern filters are not a complete
 defense. See `../results/secure/report.md`.

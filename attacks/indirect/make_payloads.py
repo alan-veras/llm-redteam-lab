@@ -2,7 +2,7 @@
 """Generate indirect-injection payloads in several document formats.
 
 Indirect (a.k.a. cross-domain) prompt injection hides instructions inside data
-the model will later read — an uploaded doc, a fetched web page, a support
+the model will later read, an uploaded doc, a fetched web page, a support
 ticket. The human reviewer sees benign content; the model reads the hidden
 instruction and obeys it. This is the highest-impact class because the victim
 is *another* user/system, not the attacker.
@@ -70,7 +70,7 @@ def write_pdf() -> str | None:
         return None
     p = os.path.join(OUT, "invoice.pdf")
     c = canvas.Canvas(p)
-    c.drawString(100, 750, "Invoice INV-2026-001  — total $0.00 (visible)")
+    c.drawString(100, 750, "Invoice INV-2026-001, total $0.00 (visible)")
     c.setFillColor(white)            # white-on-white: human can't see it, extractor can
     c.setFont("Helvetica", 1)
     c.drawString(100, 700, INSTRUCTION)

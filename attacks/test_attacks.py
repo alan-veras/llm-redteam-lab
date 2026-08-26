@@ -1,7 +1,7 @@
 """Deterministic attack assertions (pytest).
 
-Runs the taxonomy against the in-process target with TestClient — no network,
-no real model — so CI gets a fast, reproducible signal:
+Runs the taxonomy against the in-process target with TestClient, no network,
+no real model, so CI gets a fast, reproducible signal:
 
   * insecure mode  -> the intended attacks SUCCEED (the lab is vulnerable).
   * secure mode    -> the same attacks are DEFENDED.
@@ -64,7 +64,7 @@ def test_agent_tool_abuse(mode, want):
 
 
 def test_path_traversal_always_blocked():
-    """Defence in depth: path canonicalisation blocks traversal in BOTH modes —
+    """Defence in depth: path canonicalisation blocks traversal in BOTH modes, 
     the broken control is prompt-based authorization, not the sandbox boundary."""
     for mode in ("insecure", "secure"):
         c = client(mode)

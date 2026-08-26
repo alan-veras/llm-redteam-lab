@@ -6,7 +6,7 @@ red-teaming. Crescendo starts benign and escalates over several turns; each turn
 looks acceptable in isolation, but the aggregate steers the model toward the
 objective. This is the kind of attack a single-shot probe misses.
 
-This script is a runnable template — it requires PyRIT installed and a target
+This script is a runnable template, it requires PyRIT installed and a target
 configured. The lab's /chat endpoint is exposed as a custom PromptTarget so the
 *same* lab is attacked by all three tools (garak, promptfoo, PyRIT).
 

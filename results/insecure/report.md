@@ -1,4 +1,4 @@
-# Attack report — `http://localhost:8000` (mode: **insecure**)
+# Attack report, `http://localhost:8000` (mode: **insecure**)
 
 **6/7 attacks succeeded.** OWASP categories hit: LLM01, LLM06, LLM07
 

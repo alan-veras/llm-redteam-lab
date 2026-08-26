@@ -1,4 +1,4 @@
-"""Deliberately-vulnerable LLM application — the lab target.
+"""Deliberately-vulnerable LLM application, the lab target.
 
 Endpoints:
   POST /chat        direct chat (system-prompt leak, direct injection)
@@ -9,7 +9,7 @@ Endpoints:
   GET  /            mode + backend banner
 
 Run insecure (default) or secure via env LAB_MODE=secure. Backend via
-LAB_BACKEND=mock|ollama. NOTHING here should ever be exposed to the internet —
+LAB_BACKEND=mock|ollama. NOTHING here should ever be exposed to the internet, 
 it exists to be attacked, by you, on your machine. See DISCLAIMER.md.
 """
 from __future__ import annotations

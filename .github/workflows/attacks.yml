@@ -10,10 +10,10 @@ jobs:
       - run: pip install -r target/requirements.txt -r attacks/requirements.txt
       - name: deterministic attack assertions
         run: pytest attacks/test_attacks.py -q
-      - name: harness — insecure target is vulnerable, secure mostly defends
+      - name: harness, insecure target is vulnerable, secure mostly defends
         run: |
           # harness exits non-zero when any attack lands, so don't gate on its
-          # exit code — assert the expected bounds instead.
+          # exit code, assert the expected bounds instead.
           LAB_MODE=insecure python attacks/harness.py --in-process --out results/insecure || true
           LAB_MODE=secure   python attacks/harness.py --in-process --out results/secure   || true
           ins=$(jq -r '.succeeded' results/insecure/report.json)

@@ -2,15 +2,15 @@
 
 Two trust tiers of documents:
 - "public" docs anyone can retrieve.
-- "private" docs that should only ever surface for their owner — one of them
+- "private" docs that should only ever surface for their owner, one of them
   carries ``CANARY_RAG_PRIVATE``.
 
 Attackers can *ingest* their own documents (``/rag/ingest``), simulating any
 real "upload a file / paste a URL / open a ticket the assistant reads" surface.
-A poisoned document then influences another query — that is indirect injection
+A poisoned document then influences another query, that is indirect injection
 / RAG poisoning (LLM01 + LLM08).
 
-Retrieval is deliberately naive (substring keyword match) — realism is not the
+Retrieval is deliberately naive (substring keyword match), realism is not the
 point; the data->instruction confusion downstream is.
 """
 from __future__ import annotations
@@ -55,7 +55,7 @@ class RagStore:
         for d in self.docs:
             if d.private and not include_private:
                 # NOTE: user-ingested poison docs are NOT private, so they are
-                # always eligible — that's the indirect-injection vector.
+                # always eligible, that's the indirect-injection vector.
                 continue
             score = sum(1 for t in terms if t in d.text.lower())
             # user-ingested docs always get retrieved (they "match" any query),
