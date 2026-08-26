@@ -79,7 +79,7 @@ TAREFAS:
 2. Para cada variante, audite: TODOS os números citados existem nos reports? Algum claim além
    da matéria-prima §2? Marque OK/NOK por claim.
 3. Recomende 1 variante vencedora com justificativa (conversão, clareza, honestidade).
-4. Salve a vencedora em docs/post-draft.md junto das outras duas, com o checklist §5 marcado.
+4. Salve as três variantes em ../posts/llm-redteam-lab/draft-a.md, draft-b.md e draft-c.md (cada arquivo: corpo do post, separador ---, primeiro comentário) e destaque a vencedora com o checklist §5 marcado.
 5. Sugira 2 melhorias concretas na vencedora (hook mais afiado, corte de linha fraca).
 
 REGRAS: nada que não esteja na matéria-prima §2 do POST-PLAN; zero buzzword vazio;
@@ -92,8 +92,8 @@ nunca inventar pessoa/diálogo real no bloco 1. NÃO publique nada, só gerar ar
 Rodar numa sessão nova depois do rascunho pronto. Não edita nada, só julga.
 
 ```
-CONTEXTO: análise ADVERSARIAL do rascunho de post LinkedIn em docs/post-draft.md do repo
-llm-redteam-lab. Leia o rascunho, README.md, results/*/*.md e docs/POST-PLAN.md.
+CONTEXTO: análise ADVERSARIAL do rascunho nas variantes ../posts/llm-redteam-lab/draft-a.md, draft-b.md e draft-c.md do repo
+llm-redteam-lab. Leia as variantes, README.md, results/*/*.md e docs/POST-PLAN.md.
 Você é um revisor hostil triplo: usuário cético de LinkedIn (scroll rápido, zero paciência),
 security researcher que DETESTA hype, e hiring manager técnico de 45 segundos. NÃO edite nada.
 
