@@ -2,7 +2,7 @@
 
 > O repo está construído e publicado (mock determinístico como backend padrão). Este plano
 > adiciona a camada que faltava: **rodar a bateria de ataques contra MODELOS REAIS locais**
-> usando o hardware novo, RTX 3060 TI 8GB VRAM, 32GB RAM, 2TB disco.
+> usando o hardware local, RTX 3060 12GB VRAM, 32GB RAM, 2TB disco.
 >
 > **Princípio inegociável:** mock continua sendo default e o CI permanece determinístico.
 > Mock serve regressão/CI; modelo real serve EVIDÊNCIA. Os dois convivem.
@@ -14,7 +14,7 @@
 
 | Recurso | Valor | Implicação |
 |---|---|---|
-| GPU | RTX 3060 TI, 8GB VRAM | Modelos quantizados q4 até ~7B cabem folgado; 9B no limite; UM modelo carregado por vez |
+| GPU | RTX 3060, 12GB VRAM | Modelos quantizados q4 até ~7B cabem folgado; 9B também cabe; UM modelo carregado por vez |
 | RAM | 32GB | Ollama + Docker + harness simultâneos sem swap |
 | Disco | 2TB | Modelos (~3-5GB cada) e outputs brutos de todos os runs commitados fora do git quando grandes |
 
@@ -47,33 +47,33 @@ TAREFAS:
    residual a "MIT" em qualquer arquivo (grep -ri "MIT License" --exclude-dir=.git).
 2. Releia DISCLAIMER.md e SECURITY.md como se fosse um estranho hostil: ficam claros que o
    alvo é local, os findings são canary-based e nada mira terceiros? Melhore o que estiver fraco.
-3. Caça vazamentos: grep por AKIA, chaves, IPs privados, caminhos pessoais (/home/alanv),
+3. Caça vazamentos: grep por AKIA, chaves, IPs privados, caminhos pessoais,
    tokens em results/, configs e histórico recente. Liste TODO achado antes de corrigir.
 4. Verifique .gitignore cobre venvs, __pycache__, outputs pesados futuros
    (results/real-models/raw/).
 5. Imprima checklist final markdown; me diga o comando EXATO para tornar público
-   (gh repo edit alan-veras/llm-redteam-lab --visibility public) mas NÃO execute.
+   (gh repo edit com a flag de visibilidade) mas NÃO execute.
 
 ACEITE: checklist zerado; você confirma; EU torno público manualmente.
 ```
 
-## Fase R1, Stack local de inferência na 3060 TI
+## Fase R1, Stack local de inferência na 3060
 
 | | |
 |---|---|
 | Objetivo | Ollama instalado, modelos candidatos baixados e pinados, baseline de performance registrado |
 | Pré-condição | Drivers NVIDIA funcionando (`nvidia-smi` OK) |
 | Entrega | `docs/hardware.md` com modelos/tags exatas, VRAM ocupada, tokens/s de cada um |
-| Aceite | Cada modelo responde a um smoke test; nenhum passou de 8GB VRAM |
+| Aceite | Cada modelo responde a um smoke test; nenhum passou de 12GB VRAM |
 | Tempo | 1 sessão |
 
 ```
-CONTEXTO: repo llm-redteam-lab, Fase R1. Hardware novo: RTX 3060 TI 8GB VRAM, 32GB RAM.
+CONTEXTO: repo llm-redteam-lab, Fase R1. Hardware local: RTX 3060 12GB VRAM, 32GB RAM.
 Vamos instalar a stack de inferência LOCAL que alimentará a bateria de ataques.
 
 TAREFAS:
 1. Instale Ollama para Linux. Configure como serviço com OLLAMA_MAX_LOADED_MODELS=1
-   (um modelo por vez, 8GB VRAM exige disciplina) e documente o systemd unit editado.
+   (um modelo por vez, disciplina de VRAM) e documente o systemd unit editado.
 2. Candidate 4 modelos pequenos quantizados (confira tags EXATAS no ollama.com/library
    ANTES de puxar; sugestões iniciais): llama3.2 3B q4, phi3.5 3.8B q4,
    mistral 7B instruct q4_K_M, qwen2.5 7B instruct q4_K_M. Se algum estourar VRAM
@@ -180,7 +180,7 @@ README(.pt-BR).md, taxonomy/owasp-llm-top10.md e ../../posts/llm-redteam-lab/POS
 TAREFAS:
 1. README.md EN: nova seção "Real-model results" logo após a tabela mock, headline tipo
    *"the same battery against REAL small models, locally"* + tabela agregada + link pro
-   report.md + nota de hardware (3060 TI 8GB, modelos pinados). Espelho fiel no README.pt-BR.md.
+   report.md + nota de hardware (RTX 3060 12GB de consumidor, modelos pinados). Espelho fiel no README.pt-BR.md.
 2. taxonomy/owasp-llm-top10.md: adicione coluna/nota "observed on real models" por técnica, 
    onde o comportamento real divergiu do mock, diga e aponte a célula do report.
 3. POST-PLAN (agora em ../../posts/llm-redteam-lab/POST-PLAN.md): atualize §2 (matéria-prima) com as linhas novas da matriz real;
@@ -212,7 +212,7 @@ EIXOS DE ATAQUE:
 3. MOCK vs REAL: o README deixa claro qual número vem de onde? Alguém pode citar o 6/7 do mock
    como se fosse modelo real?
 4. REPRODUTIBILIDADE: com docs/hardware.md, outra pessoa com outra GPU reproduz? O que quebra
-   sem RTX 3060 TI (fallback CPU documentado)? Tags de modelos pinadas de verdade?
+   sem a RTX 3060 (fallback CPU documentado)? Tags de modelos pinadas de verdade?
 5. CLAIMS & CONVERSÃO: algum número do README/post sem célula correspondente nos raws?
    O hook novo exagera o melhor resultado?
 6. CI & MOCK: make test segue 100% verde sem GPU? O default continua mock? Nenhuma dependência
