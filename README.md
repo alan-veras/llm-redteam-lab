@@ -58,7 +58,8 @@ The target has **two backends** (be honest about this):
   (`attacks/harness.py`), **garak** (REST generator), **promptfoo** (http
   provider), **PyRIT** (Crescendo template).
 - A `secure` mode and `pytest` suite that turn this into a regression gate, the
-  basis for the companion project **[llm-security-evals](https://github.com/alan-veras/llm-security-evals)**.
+  basis for the companion project `llm-security-evals` (in the works, repo link
+  lands when it goes public).
 
 ## What I learned
 
