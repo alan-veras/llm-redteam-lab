@@ -175,7 +175,7 @@ variância documentada; commit com raws leves (json/log compactados se precisar)
 
 ```
 CONTEXTO: repo llm-redteam-lab, Fase R4 final. Leia results/real-models/report.md,
-README(.pt-BR).md, taxonomy/owasp-llm-top10.md e docs/POST-PLAN.md.
+README(.pt-BR).md, taxonomy/owasp-llm-top10.md e ../../posts/llm-redteam-lab/POST-PLAN.md.
 
 TAREFAS:
 1. README.md EN: nova seção "Real-model results" logo após a tabela mock, headline tipo
@@ -183,7 +183,7 @@ TAREFAS:
    report.md + nota de hardware (3060 TI 8GB, modelos pinados). Espelho fiel no README.pt-BR.md.
 2. taxonomy/owasp-llm-top10.md: adicione coluna/nota "observed on real models" por técnica, 
    onde o comportamento real divergiu do mock, diga e aponte a célula do report.
-3. docs/POST-PLAN.md: atualize §2 (matéria-prima) com as linhas novas da matriz real;
+3. POST-PLAN (agora em ../../posts/llm-redteam-lab/POST-PLAN.md): atualize §2 (matéria-prima) com as linhas novas da matriz real;
    adicione hook opcional D (*"Testei 7 ataques contra 4 modelos pequenos rodando na minha
    GPU. Um deles resistiu a quase tudo."*, ajustar ao resultado REAL).
 4. Roadmap/checklists deste EXECUTION-PLAN marcados; commit final organizado.
@@ -199,7 +199,7 @@ SÓ em números reais.
 ```
 CONTEXTO: análise ADVERSARIAL do upgrade "modelos reais" do llm-redteam-lab. Leia
 results/real-models/report.md, alguns raw/*/report.json (amostragem), scripts/run-matrix.sh,
-scripts/aggregate-matrix.py, docs/hardware.md, README(.pt-BR).md e docs/POST-PLAN.md.
+scripts/aggregate-matrix.py, docs/hardware.md, README(.pt-BR).md e ../../posts/llm-redteam-lab/POST-PLAN.md.
 Você é TRÊS revisores hostis: ML engineer cético (metodologia experimental), security
 researcher anti-hype, hiring manager de 45 segundos. NÃO corrija nada, só analise.
 
