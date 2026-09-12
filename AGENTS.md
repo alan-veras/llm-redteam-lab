@@ -12,7 +12,7 @@ Substitua por vírgula, dois-pontos ou parênteses, o que ler melhor no contexto
 Verificação rápida antes de qualquer commit:
 
 ```bash
-grep -rnP '\x{2014}|\x{2013}' --include='*.md' --include='*.py' --include='*.sh' .
+grep -rnP '\x{2014}|\x{2013}' --include='*.md' --include='*.py' --include='*.sh' --include='*.txt' --include='*.yml' --include='*.yaml' .
 ```
 
 O comando acima deve retornar ZERO resultados fora de `.venv/` e `.git/`.
