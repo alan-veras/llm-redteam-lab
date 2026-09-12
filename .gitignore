@@ -10,6 +10,7 @@ secrets.*
 credentials.*
 .DS_Store
 results/run/
+results/real-models/raw/
 attacks/indirect/payloads/
 garak_runs/
 *.report.jsonl
