@@ -2,7 +2,7 @@ services:
   target:
     build: ./target
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     environment:
       LAB_MODE: ${LAB_MODE:-insecure}
       LAB_BACKEND: ${LAB_BACKEND:-mock}
