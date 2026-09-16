@@ -30,7 +30,8 @@ mapping, and a secure-vs-insecure regression you can watch flip.
 target/      a deliberately-vulnerable FastAPI LLM app (chat + RAG + tool agent)
 taxonomy/    the prompt-injection taxonomy mapped to the OWASP LLM Top 10 (2025)
 attacks/     the harness: a python runner, garak, promptfoo and PyRIT configs
-results/     sample reports (insecure: 6/7 attacks land, secure: 1/7)
+results/     sample reports (deterministic target: insecure 6/7, secure 1/7;
+             real llama3.2:3b via ollama: 2/7 across 2 insecure runs, 0/7 secure)
 ```
 
 The target has **two backends** (be honest about this):
